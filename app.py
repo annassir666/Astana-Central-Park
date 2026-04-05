@@ -11,8 +11,6 @@ DB_PATH = "park.db"
 SCADA_HOST = os.environ.get("SCADA_HOST", "127.0.0.1")
 SCADA_PORT = os.environ.get("SCADA_PORT", "502")
 
-admin_uuid = "8f4c2f70-6d52-4f5e-9c80-admin1337abc"  # Static UUID web-admin user
-
 def get_db():
     if "db" not in g:
         g.db = sqlite3.connect(DB_PATH)
@@ -146,7 +144,6 @@ def profile():
     if not user:
         return "User not found", 404
 
-    # Broken session logic: overwrite session with viewed profile
     session["uuid"] = user["uuid"]
     session["viewed_is_admin"] = user["is_admin"]
 
@@ -170,7 +167,6 @@ def update_profile():
 @app.route("/admin")
 @login_required
 def admin():
-    # Vulnerability: trusts session value set by /profile?uuid=
     if not session.get("viewed_is_admin"):
         return "Admins only", 403
 
