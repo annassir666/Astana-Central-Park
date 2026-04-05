@@ -1,3 +1,23 @@
-A large international theme park operator, **Parques Reunidos**, was hit by a cyberattack in 2023 where attackers gained unauthorized access to internal systems and a ransomware group, **Bian Lian ransomware group**, claimed to have stolen over 1 TB of sensitive data. Inspired by this real incident, “Astana Smart Park” recently deployed a connected Ferris wheel system controlled through a web-based admin panel and SCADA API. After noticing unusual activity and ride disruptions, the park suspects that attackers may have exploited exposed internal resources during rushed security changes following global incidents.
+# Astana Central Park Blog Platform
 
-As a security researcher, your task is to investigate the park’s public website and find a way to access the hidden admin panel that controls the Ferris wheel. Developers may have accidentally exposed sensitive files or API keys, and weak authentication could allow unauthorized access. Your goal is to discover these weaknesses, gain admin access, and demonstrate how an attacker could manipulate ride operations.
+This repository contains the source code for a web-based blog application developed for Astana Central Park. The platform allows users to register, authenticate, and browse posts related to park news, events, and attractions.
+
+The application is designed to simulate a modern web environment used for both public communication and internal updates within the park infrastructure.
+
+---
+
+## Features
+
+- User registration and authentication
+- User profiles
+- Administrative panel for managing content
+- Simple and lightweight architecture
+
+---
+
+## Technologies Used
+
+- Python (Flask)
+- SQLite
+- HTML / CSS (Jinja2 templates)
+- Docker (for deployment)
