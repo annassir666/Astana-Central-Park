@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astana Central Park Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #10b981;
+      --secondary: #059669;
+      --accent: #fbbf24;
+      --dark: #1f2937;
+      --light: #f3f4f6;
+      --text: #111827;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+      padding: 1rem 0;
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 600;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--accent) !important;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+      margin-bottom: 0;
+    }
+
+    /* Main Container */
+    .main-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* Posts Section */
+    .posts-header {
+      margin-bottom: 40px;
+    }
+
+    .posts-header h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .posts-header p {
+      font-size: 1.1rem;
+      color: #6b7280;
+    }
+
+    /* Post Card - Vertical Layout */
+    .post-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: row;
+    }
+
+    @media (max-width: 768px) {
+      .post-card {
+        flex-direction: column;
+      }
+    }
+
+    .post-image {
+      width: 280px;
+      height: 200px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    }
+
+    @media (max-width: 768px) {
+      .post-image {
+        width: 100%;
+        height: 250px;
+      }
+    }
+
+    .post-content {
+      padding: 30px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .post-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .post-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .post-excerpt {
+      color: #4b5563;
+      margin-bottom: 20px;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .post-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    .post-button:hover {
+      transform: translateX(4px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .empty-state i {
+      font-size: 4rem;
+      color: #d1d5db;
+      margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.5rem;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .footer p {
+      margin: 0;
+      opacity: 0.8;
+    }
+
+    /* Auth Buttons */
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-auth {
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      color: white;
+    }
+
+    .btn-login {
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+    }
+
+    .btn-login:hover {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-profile {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .btn-profile:hover {
+      background: #f59e0b;
+      transform: translateY(-2px);
+    }
+
+    .btn-logout {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-logout:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <i class="fas fa-leaf"></i> Astana Central Park
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+          </li>
+          {% if user %}
+            <li class="nav-item">
+              <a class="nav-link" href="/profile"><i class="fas fa-user-circle"></i> {{ user['username'] }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Register</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1><i class="fas fa-leaf"></i> Astana Central Park</h1>
+      <p>Where Nature Meets Innovation</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <div class="posts-header">
+      <h2>Latest Articles</h2>
+      <p>Discover stories from our park community</p>
+    </div>
+
+    {% if posts %}
+      {% for post in posts %}
+        <div class="post-card">
+          {% if post['username'] != 'web-admin' %}
+          <!-- Author UUID: {{ post['uuid'] }} -->
+          {% endif %}
+          {% if post['image_url'] %}
+            <img src="/static/assets/{{ post['image_url'] }}" alt="{{ post['title'] }}" class="post-image">
+          {% else %}
+            <div class="post-image" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center;">
+              <i class="fas fa-newspaper" style="font-size: 3rem; color: white; opacity: 0.3;"></i>
+            </div>
+          {% endif %}
+          
+          <div class="post-content">
+            <div>
+              <h2 class="post-title">{{ post['title'] }}</h2>
+              
+              <div class="post-meta">
+                <span class="post-author">
+                  <i class="fas fa-pen-fancy"></i> {{ post['username'] }}
+                </span>
+                <span>
+                  <i class="fas fa-calendar-alt"></i> 2026
+                </span>
+              </div>
+
+              <p class="post-excerpt">{{ post['content'][:180] }}...</p>
+            </div>
+
+            <a href="/post/{{ post['id'] }}" class="post-button">
+              <i class="fas fa-arrow-right"></i> Read Article
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">
+        <i class="fas fa-inbox"></i>
+        <h3>No articles yet</h3>
+        <p>Check back soon for exciting content!</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Astana Central Park. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

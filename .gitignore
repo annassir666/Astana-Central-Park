@@ -11,13 +11,10 @@ build/
 
 # Application files to ignore
 park.db
-description.md
 Dockerfile
 entrypoint.sh
 init_db.py
 reset_state.py
-app.py
-requirements.txt
-static/
-templates/
+templates/admin.html
+templates/scada.html
 

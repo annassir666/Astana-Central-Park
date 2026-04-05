@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ post["title"] }} | Astana Central Park</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #10b981;
+      --secondary: #059669;
+      --accent: #fbbf24;
+      --dark: #1f2937;
+      --light: #f3f4f6;
+      --text: #111827;
+    }
+    
+    body {
+      background-color: var(--light);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+    }
+    
+    .navbar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+      padding: 1rem 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+    
+    .nav-link {
+      color: rgba(255, 255, 255, 0.9) !important;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent) !important;
+    }
+    
+    .post-container {
+      background: white;
+      border-radius: 15px;
+      padding: 50px;
+      box-shadow: 0 8px 30px rgba(0, 168, 107, 0.15);
+      margin: 40px 0;
+      border: 1px solid #c8e6c9;
+      border-left: 5px solid var(--primary);
+    }
+    
+    .post-title {
+      color: var(--primary);
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    
+    .post-meta-info {
+      display: flex;
+      gap: 25px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #c8e6c9;
+      flex-wrap: wrap;
+    }
+    
+    .meta-item {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    
+    .meta-item i {
+      margin-right: 8px;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    .meta-author {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #374151;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      margin-bottom: 40px;
+    }
+    
+    .post-navigation {
+      display: flex;
+      gap: 20px;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #c8e6c9;
+      flex-wrap: wrap;
+    }
+    
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid var(--primary);
+      color: white;
+      background: var(--primary);
+    }
+    
+    .btn-nav:hover {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      transform: translateX(-4px);
+    }
+    
+    .footer {
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 30px 0;
+      margin-top: 60px;
+      text-align: center;
+      border-top: 3px solid var(--accent);
+    }
+    
+    @media (max-width: 768px) {
+      .post-container {
+        padding: 30px;
+      }
+      
+      .post-title {
+        font-size: 1.8rem;
+      }
+      
+      .post-content {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <i class="fas fa-leaf"></i> Astana Central Park
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container my-5">
+    <article class="post-container">
+      {% if post['username'] != 'web-admin' %}
+      <!-- Author UUID: {{ post['uuid'] }} -->
+      {% endif %}
+      <h1 class="post-title">{{ post["title"] }}</h1>
+      
+      <div class="post-meta-info">
+        <span class="meta-item">
+          <i class="fas fa-pen-fancy"></i> <span class="meta-author">{{ post["username"] }}</span>
+        </span>
+        <span class="meta-item">
+          <i class="fas fa-calendar-alt"></i> Article #{{ post['id'] }}
+        </span>
+      </div>
+      
+      <div class="post-content">{{ post["content"] }}</div>
+      
+      <div class="post-navigation">
+        <a href="/" class="btn-nav">
+          <i class="fas fa-arrow-left"></i> Back to Park Blog
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Astana Central Park. All rights reserved. | Managed by Park Administration</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
